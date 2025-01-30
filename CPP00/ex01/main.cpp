@@ -1,4 +1,5 @@
-#include "header.hpp"
+#include "contacts.hpp"
+#include "Phonebook.hpp"
 
 std::string capital(std::string str)
 {
@@ -24,16 +25,22 @@ int main()
 	p_header();
 	
 	std::string buffer;
+	Contacts	list;
+	Phonebook	book;
 
 	std::cout << "ADD - Save a new contact\n";
 	std::cout << "SEARCH - Display a specific contact\n";
 	std::cout << "EXIT - Leaves (crazy)\n";
-	std::cout << "Choose an option:";
+	std::cout << "Choose an option: ";
 	while (std::getline(std::cin, buffer))
 	{
 		buffer = capital(buffer);
 		if (buffer == "EXIT")
 			break ;
+		else if (buffer == "ADD")
+		{
+
+		}
 		else
 		{
 			system("clear");
