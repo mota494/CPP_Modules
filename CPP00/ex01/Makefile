@@ -1,11 +1,11 @@
 NAME = phonebook
-SRC = main.cpp
+SRC = Phonebook.cpp contacts.cpp main.cpp utils.cpp
 CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
 $(NAME): $(SRC)
-	c++ $(CPP_FLAGS) $(SRC) -o $(NAME)
+	c++ $(CPP_FLAGS) $(SRC) -o $(NAME) 
 
 clean:
 	rm $(NAME)
