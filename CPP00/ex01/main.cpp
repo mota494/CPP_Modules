@@ -25,7 +25,7 @@ int main()
 	p_header();
 	
 	std::string buffer;
-	Contacts	list;
+	Contacts	contact;
 	Phonebook	book;
 
 	std::cout << "ADD - Save a new contact\n";
@@ -39,7 +39,7 @@ int main()
 			break ;
 		else if (buffer == "ADD")
 		{
-
+			contact.new_contact();
 		}
 		else
 		{

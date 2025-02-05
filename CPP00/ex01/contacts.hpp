@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <cctype>
 #include <cstdlib>
+#include "utils.hpp"
 
 class Contacts {
 	private:
@@ -25,5 +26,6 @@ class Contacts {
 		std::string get_nick(void) const;
 		std::string get_secr(void) const;
 		std::string get_phone(void) const;
-
+		void		setup_firstname(void);
+		void		new_contact(void);
 };
