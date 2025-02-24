@@ -6,11 +6,12 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:09:50 by mloureir          #+#    #+#             */
-/*   Updated: 2025/02/05 10:29:59 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/02/24 15:30:11 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contacts.hpp"
+#include "utils.hpp"
 
 void	Contacts::set_firstn(std::string input)
 {
@@ -74,10 +75,49 @@ void	Contacts::setup_firstname(void)
 	}
 }
 
+void	Contacts::setup_lastname(void)
+{
+	std::string buffer;
+
+	while (1)
+	{
+		std::getline(std::cin, buffer);
+		if (check_name(buffer) == 1)
+			std::cout << "Input a valid name:";
+		else
+		{
+			set_lastn(buffer);
+			break;
+		}
+	}
+}
+
+void	Contacts::setup_nickname(void)
+{
+	std::string buffer;
+
+	while (1)
+	{
+		std::getline(std::cin, buffer);
+		if (check_name(buffer) == 1)
+			std::cout << "Input a valid nickname:";
+		else
+		{
+			set_nick(buffer);
+			break;
+		}
+	}
+}
+
 void	Contacts::new_contact(void)
 {
 	system("clear");
 	std::cout << "Fill up new contact information\n";
-	std::cout << "Input first name:";
+	std::cout << "Inset first name:";
 	setup_firstname();
+	std::cout << "Inset last name:";
+	setup_lastname();
+	std::cout << "Insert nickname:";
+	setup_nickname();
+	std::cout << "Insert phone number:";
 }

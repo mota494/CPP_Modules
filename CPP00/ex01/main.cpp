@@ -27,6 +27,7 @@ int main()
 	std::string buffer;
 	Contacts	contact;
 	Phonebook	book;
+	int			id = 0;
 
 	std::cout << "ADD - Save a new contact\n";
 	std::cout << "SEARCH - Display a specific contact\n";
@@ -40,6 +41,8 @@ int main()
 		else if (buffer == "ADD")
 		{
 			contact.new_contact();
+			contact.set_id(id);
+			id++;
 		}
 		else
 		{
