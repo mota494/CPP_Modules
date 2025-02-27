@@ -8,4 +8,6 @@
 #include <cstdlib>
 
 int	check_name(std::string);
+int	check_opt(std::string);
+int strtoi(std::string);	
 int	check_number(std::string);

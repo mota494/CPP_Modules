@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:09:50 by mloureir          #+#    #+#             */
-/*   Updated: 2025/02/25 10:19:50 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/02/27 15:52:54 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	Contacts::set_nick(std::string input)
 void	Contacts::set_secr(std::string input)
 {
 	secret = input;
+}
+
+std::string	Contacts::get_secr(void) const
+{
+	return (secret);
 }
 
 void	Contacts::set_id(int input)
@@ -125,7 +130,7 @@ void	Contacts::new_contact(void)
 	std::cout << "Insert last name:";
 	set_lastn(setup_names());
 	std::cout << "Insert nickname:";
-	set_firstn(setup_names());
+	set_nick(setup_names());
 	std::cout << "Insert phone number:";
 	setup_number();
 	std::cout << "Inset darkest secret:";
