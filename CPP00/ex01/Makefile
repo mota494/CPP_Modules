@@ -1,6 +1,6 @@
 NAME = phonebook
 SRC = Phonebook.cpp contacts.cpp main.cpp utils.cpp
-CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+CPP_FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 all: $(NAME)
 

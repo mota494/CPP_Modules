@@ -26,7 +26,7 @@ void	p_options()
 	std::cout << GREEN << "ADD" << RESET << " - Save a new contact\n";
 	std::cout << YELLOW << "SEARCH" << RESET << " - Display a specific contact\n";
 	std::cout << RED << "EXIT" << RESET << " - Leaves (crazy)\n";
-	std::cout << "Choose an option: ";
+	std::cout << "Choose an option:";
 }
 
 int main()
@@ -39,6 +39,7 @@ int main()
 	int			id = 0;
 
 	p_options();
+	book.set_n_contacts(0);
 	while (std::getline(std::cin, buffer))
 	{
 		buffer = capital(buffer);
@@ -54,14 +55,7 @@ int main()
 				id = 0;
 		}
 		else if (buffer == "SEARCH")
-		{
 			book.book_menu();
-		}
-		else
-		{
-			system("clear");
-			p_options();
-		}
 		system("clear");
 		p_options();
 	}

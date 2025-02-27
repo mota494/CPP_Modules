@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:09:49 by mloureir          #+#    #+#             */
-/*   Updated: 2025/02/25 11:06:09 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/02/27 15:29:48 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ class Phonebook
 		int			n_contacts;
 	public:
 		void		book_menu(void);
-		Contacts	get_icontact(int id) const;
+		Contacts&	get_icontact(int id);
+		void		show_contact(int id);
 		void		set_n_contacts(int input);
 		int			get_ncontacts(void) const;
 		void		add_contact(int id, Contacts new_contact);

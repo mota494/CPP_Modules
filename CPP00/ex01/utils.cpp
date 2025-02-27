@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:18:50 by mloureir          #+#    #+#             */
-/*   Updated: 2025/02/25 09:55:50 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/02/27 15:41:31 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,32 @@ int	check_number(std::string number)
 	}
 	return (0);
 }
+
+int	check_opt(std::string opt)
+{
+	if (opt.length() <= 0)
+		return (1);
+	for (unsigned long i = 0; i < opt.length(); i++)
+	{
+		if (std::isdigit(opt[i]) == 0)
+			return (1);
+	}
+	return (0);
+}
+
+int	strtoi(std::string input)
+{
+	int	i;
+	int	num;
+	i = 0;
+	num = 0;
+	while ((input[i] >= 9 && input[i] <= 13) || (input[i] == 32))
+		i++;
+	while (isdigit(input[i]))
+	{
+		num = num * 10 + input[i] - 48;
+		i++;
+	}
+	return (num);
+}
+
