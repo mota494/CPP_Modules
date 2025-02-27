@@ -7,4 +7,5 @@
 #include <cctype>
 #include <cstdlib>
 
-int	check_name(std::string); 
+int	check_name(std::string);
+int	check_number(std::string);
