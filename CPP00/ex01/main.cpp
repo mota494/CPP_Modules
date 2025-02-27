@@ -13,11 +13,20 @@ std::string capital(std::string str)
 
 void	p_header()
 {
+	std::cout << PRETTY;
 	std::cout << "▗▄▄▖ ▗▖ ▗▖ ▗▄▖ ▗▖  ▗▖▗▄▄▄▖▗▄▄▖  ▗▄▖  ▗▄▖ ▗▖ ▗▖\n";
 	std::cout << "▐▌ ▐▌▐▌ ▐▌▐▌ ▐▌▐▛▚▖▐▌▐▌   ▐▌ ▐▌▐▌ ▐▌▐▌ ▐▌▐▌▗▞▘\n";
 	std::cout << "▐▛▀▘ ▐▛▀▜▌▐▌ ▐▌▐▌ ▝▜▌▐▛▀▀▘▐▛▀▚▖▐▌ ▐▌▐▌ ▐▌▐▛▚▖ \n";
 	std::cout << "▐▌   ▐▌ ▐▌▝▚▄▞▘▐▌  ▐▌▐▙▄▄▖▐▙▄▞▘▝▚▄▞▘▝▚▄▞▘▐▌ ▐▌\n";
-	std::cout << "\n";
+	std::cout << RESET;
+}
+
+void	p_options()
+{
+	std::cout << GREEN << "ADD" << RESET << " - Save a new contact\n";
+	std::cout << YELLOW << "SEARCH" << RESET << " - Display a specific contact\n";
+	std::cout << RED << "EXIT" << RESET << " - Leaves (crazy)\n";
+	std::cout << "Choose an option: ";
 }
 
 int main()
@@ -29,10 +38,7 @@ int main()
 	Phonebook	book;
 	int			id = 0;
 
-	std::cout << "ADD - Save a new contact\n";
-	std::cout << "SEARCH - Display a specific contact\n";
-	std::cout << "EXIT - Leaves (crazy)\n";
-	std::cout << "Choose an option: ";
+	p_options();
 	while (std::getline(std::cin, buffer))
 	{
 		buffer = capital(buffer);
@@ -42,16 +48,22 @@ int main()
 		{
 			contact.new_contact();
 			contact.set_id(id);
+			book.add_contact(id, contact);
 			id++;
+			if (id >= 7)
+				id = 0;
+		}
+		else if (buffer == "SEARCH")
+		{
+			book.book_menu();
 		}
 		else
 		{
 			system("clear");
-			std::cout << "ADD - Save a new contact\n";
-			std::cout << "SEARCH - Display a specific contact\n";
-			std::cout << "EXIT - Leaves (crazy)\n";
-			std::cout << "Choose an option:";
+			p_options();
 		}
+		system("clear");
+		p_options();
 	}
 	std::cout << "\nGoodbye\n" << std::endl;
 	return (0);

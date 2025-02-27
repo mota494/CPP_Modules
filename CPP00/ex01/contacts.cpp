@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:09:50 by mloureir          #+#    #+#             */
-/*   Updated: 2025/02/24 15:30:11 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/02/25 10:19:50 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,19 @@ void	Contacts::set_secr(std::string input)
 	secret = input;
 }
 
+void	Contacts::set_id(int input)
+{
+	id = input;
+}
+
 void	Contacts::set_phone(std::string input)
 {
 	phone = input;
+}
+
+int		Contacts::get_id(void) const
+{
+	return id;
 }
 
 std::string	Contacts::get_firstn(void) const
@@ -58,24 +68,7 @@ std::string	Contacts::get_phone(void) const
 	return phone;
 }
 
-void	Contacts::setup_firstname(void)
-{
-	std::string	buffer;
-
-	while (1)
-	{
-		std::getline(std::cin, buffer);
-		if (check_name(buffer) == 1)
-			std::cout << "Input a valid name:";
-		else
-		{
-			set_firstn(buffer);
-			break;
-		}
-	}
-}
-
-void	Contacts::setup_lastname(void)
+std::string	Contacts::setup_names(void)
 {
 	std::string buffer;
 
@@ -85,25 +78,39 @@ void	Contacts::setup_lastname(void)
 		if (check_name(buffer) == 1)
 			std::cout << "Input a valid name:";
 		else
-		{
-			set_lastn(buffer);
-			break;
-		}
+			return (buffer);
 	}
 }
 
-void	Contacts::setup_nickname(void)
+void	Contacts::setup_number(void)
 {
 	std::string buffer;
 
 	while (1)
 	{
 		std::getline(std::cin, buffer);
-		if (check_name(buffer) == 1)
-			std::cout << "Input a valid nickname:";
+		if (check_number(buffer) == 1)
+			std::cout << "Input a valid phone number:";
 		else
 		{
-			set_nick(buffer);
+			set_phone(buffer);
+			break;
+		}
+	}
+}
+
+void	Contacts::setup_dark(void)
+{
+	std::string buffer;
+
+	while (1)
+	{
+		std::getline(std::cin, buffer);
+		if (buffer.length() <= 0)
+			std::cout << "Insert darkest secret:";
+		else
+		{
+			set_secr(buffer);
 			break;
 		}
 	}
@@ -113,11 +120,14 @@ void	Contacts::new_contact(void)
 {
 	system("clear");
 	std::cout << "Fill up new contact information\n";
-	std::cout << "Inset first name:";
-	setup_firstname();
-	std::cout << "Inset last name:";
-	setup_lastname();
+	std::cout << "Insert first name:";
+	set_firstn(setup_names());
+	std::cout << "Insert last name:";
+	set_lastn(setup_names());
 	std::cout << "Insert nickname:";
-	setup_nickname();
+	set_firstn(setup_names());
 	std::cout << "Insert phone number:";
+	setup_number();
+	std::cout << "Inset darkest secret:";
+	setup_dark();
 }

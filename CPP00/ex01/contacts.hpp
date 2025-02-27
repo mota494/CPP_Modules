@@ -29,9 +29,8 @@ class Contacts {
 		std::string get_nick(void) const;
 		std::string get_secr(void) const;
 		std::string get_phone(void) const;
-		void		setup_firstname(void);
-		void		setup_lastname(void);
-		void		setup_nickname(void);
+		std::string	setup_names(void);
+		void		setup_dark(void);
 		void		setup_number(void);
 		void		new_contact(void);
 };
