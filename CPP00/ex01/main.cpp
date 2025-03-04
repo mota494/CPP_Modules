@@ -51,7 +51,7 @@ int main()
 			contact.set_id(id);
 			book.add_contact(id, contact);
 			id++;
-			if (id >= 7)
+			if (id > 7)
 				id = 0;
 		}
 		else if (buffer == "SEARCH")

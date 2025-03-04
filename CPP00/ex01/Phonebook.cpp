@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:09:48 by mloureir          #+#    #+#             */
-/*   Updated: 2025/02/27 15:53:53 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/03/04 14:08:18 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,23 @@ void	Phonebook::show_contact(int id)
 	}
 	else
 	{
+		system("clear");
 		std::cout << std::right << "First name:" << t_contact.get_firstn() << "\n";
 		std::cout << std::right << "Last name:" << t_contact.get_lastn() << "\n";
 		std::cout << std::right << "Nickname:" << t_contact.get_nick() << "\n";
 		std::cout << std::right << "Phonenumber:" << t_contact.get_phone() << "\n";
 		std::cout << std::right << "Secret:" << t_contact.get_secr() << "\n";
+		std::cout << GREEN << "Press Enter to continue" << RESET;
 		std::cin.ignore();
 	}
+}
+
+std::string	tunca(std::string original)
+{
+	if (original.length() > 9)
+		return (original.substr(0,9) + ".");
+	else
+		return (original);
 }
 
 void	Phonebook::book_menu(void)
@@ -82,17 +92,21 @@ void	Phonebook::book_menu(void)
 	{
 		Contacts& t_contact = get_icontact(id);
 		std::cout << "|" << std::right << std::setw(10) << t_contact.get_id() << "|";
-		std::cout << std::right << std::setw(10) << t_contact.get_firstn().substr(0, 9) << "|";
-		std::cout << std::right << std::setw(10) << t_contact.get_lastn().substr(0, 9) << "|";
-		std::cout << std::right << std::setw(10) << t_contact.get_nick().substr(0, 9) << "|\n";
+		std::cout << std::right << std::setw(10) << tunca(t_contact.get_firstn()) << "|";
+		std::cout << std::right << std::setw(10) << tunca(t_contact.get_lastn()) << "|";
+		std::cout << std::right << std::setw(10) << tunca(t_contact.get_nick()) << "|\n";
 		id++;
 	}
+	std::cout << "|" << std::right << std::setw(10) << id << "|";
+	std::cout << std::right << std::setw(10) << "Back|\n";
 	while (1)
 	{
 		std::cout << "Choose an index:";
 		std::getline(std::cin, buffer);
 		if (check_opt(buffer) == 0)
 		{
+			if (strtoi(buffer) == id)
+				break;
 			show_contact(strtoi(buffer));
 			break;
 		}
