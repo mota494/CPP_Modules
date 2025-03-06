@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contacts.cpp                                       :+:      :+:    :+:   */
+/*   Contacts.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:09:50 by mloureir          #+#    #+#             */
-/*   Updated: 2025/03/06 08:51:47 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/03/06 08:54:20 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "contacts.hpp"
-#include "utils.hpp"
+#include "Contacts.hpp"
+#include "Utils.hpp"
 
 void	Contacts::set_firstn(std::string input)
 {
