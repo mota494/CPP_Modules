@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:09:50 by mloureir          #+#    #+#             */
-/*   Updated: 2025/02/27 15:52:54 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/03/06 08:51:47 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void	Contacts::setup_dark(void)
 
 void	Contacts::new_contact(void)
 {
+	signal(SIGINT, SIG_IGN);
 	system("clear");
 	std::cout << "Fill up new contact information\n";
 	std::cout << "Insert first name:";
@@ -135,4 +136,5 @@ void	Contacts::new_contact(void)
 	setup_number();
 	std::cout << "Inset darkest secret:";
 	setup_dark();
+	signal(SIGINT, SIG_DFL);
 }

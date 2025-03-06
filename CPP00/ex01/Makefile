@@ -1,5 +1,5 @@
 NAME = phonebook
-SRC = Phonebook.cpp contacts.cpp main.cpp utils.cpp
+SRC = Phonebook.cpp Contacts.cpp Main.cpp Utils.cpp
 CPP_FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 all: $(NAME)
