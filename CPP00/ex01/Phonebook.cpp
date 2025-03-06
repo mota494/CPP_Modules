@@ -6,12 +6,12 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:09:48 by mloureir          #+#    #+#             */
-/*   Updated: 2025/03/04 14:08:18 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/03/06 08:55:02 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Phonebook.hpp"
-#include "contacts.hpp"
+#include "Contacts.hpp"
 #include <iomanip>
 
 void	phonebook_header(void)

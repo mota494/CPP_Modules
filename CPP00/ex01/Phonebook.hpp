@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 10:09:49 by mloureir          #+#    #+#             */
-/*   Updated: 2025/03/06 08:49:54 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/03/06 08:54:56 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <cstdlib>
 #include <cctype>
 #include <cstdlib>
-#include "contacts.hpp"
+#include "Contacts.hpp"
 
 #define GREEN "\033[38;5;83m"
 #define YELLOW "\033[38;5;220m"
