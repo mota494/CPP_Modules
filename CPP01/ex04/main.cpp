@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 13:55:53 by mloureir          #+#    #+#             */
-/*   Updated: 2025/03/14 15:21:39 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:29:15 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,27 @@ int parser(int argc, char **argv)
 	return (0);
 }
 
+std::string treatline(std::string buffer, char *str1, char *str2)
+{
+	int	fpos, lpos = 0;
+	std::string	toret, helper;
+	int str1_len, str2_len;
+
+	helper = std::string(str1);
+	str1_len = helper.length();
+	helper = std::string(str2);
+	str2_len = helper.length();
+	while (buffer.find(str1, lpos) != std::string::npos)
+	{
+		fpos = buffer.find(str1, lpos);	
+		toret += buffer.substr(lpos, fpos - lpos);
+		lpos = toret.length() + str1_len;
+		toret += str2;	
+	}
+	toret += buffer.substr(lpos);
+	return (toret);
+}
+
 int main(int argc, char **argv)
 {
 	if (parser(argc, argv) == 1)
@@ -41,13 +62,15 @@ int main(int argc, char **argv)
 
 	std::string rep_file = (std::string)argv[1] + ".replace", buffer;
 	std::fstream file (argv[1]);
-	std::fstream newfile (rep_file.c_str());
+	std::ofstream newfile (rep_file.c_str());
 
 	file.is_open();
 	newfile.is_open();
 	while (getline(file, buffer))
 	{
-		std::cout << buffer << "\n";
+		newfile << treatline(buffer, argv[2], argv[3]) << "\n";
 	}
+	file.close();
+	newfile.close();
 	return (0);
 }
