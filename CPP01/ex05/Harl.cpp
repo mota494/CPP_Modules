@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:07:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/03/17 14:30:43 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/03/18 14:37:51 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void Harl::complain(std::string level)
 	}
 
 	i = 0;
-	while (i < 3)
+	while (i <= 3)
 	{
 		if (inputs[i] == level)
 			(this->*funcs[i])();

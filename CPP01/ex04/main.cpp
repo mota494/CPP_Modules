@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 13:55:53 by mloureir          #+#    #+#             */
-/*   Updated: 2025/03/17 13:29:15 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/03/18 14:37:10 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,20 @@ int parser(int argc, char **argv)
 	return (0);
 }
 
+int	spaces(std::string str)
+{
+	int	i = 0;
+	int	count = 0;
+	
+	while (str[i])
+	{
+		if ((str[i] == 32) || (str[i] >= 9 && str[i] <= 13))
+			count++;
+		i++;
+	}
+	return (count);
+}
+
 std::string treatline(std::string buffer, char *str1, char *str2)
 {
 	int	fpos, lpos = 0;
@@ -42,14 +56,12 @@ std::string treatline(std::string buffer, char *str1, char *str2)
 
 	helper = std::string(str1);
 	str1_len = helper.length();
-	helper = std::string(str2);
-	str2_len = helper.length();
 	while (buffer.find(str1, lpos) != std::string::npos)
 	{
 		fpos = buffer.find(str1, lpos);	
 		toret += buffer.substr(lpos, fpos - lpos);
-		lpos = toret.length() + str1_len;
-		toret += str2;	
+		toret += str2;
+		lpos = fpos + str1_len;
 	}
 	toret += buffer.substr(lpos);
 	return (toret);
@@ -67,9 +79,7 @@ int main(int argc, char **argv)
 	file.is_open();
 	newfile.is_open();
 	while (getline(file, buffer))
-	{
 		newfile << treatline(buffer, argv[2], argv[3]) << "\n";
-	}
 	file.close();
 	newfile.close();
 	return (0);
