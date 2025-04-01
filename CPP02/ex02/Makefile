@@ -1,4 +1,4 @@
-NAME = ex01 
+NAME = ex02
 SRC = Fixed.cpp main.cpp
 CPP_FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
