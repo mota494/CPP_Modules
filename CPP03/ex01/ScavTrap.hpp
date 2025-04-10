@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 10:59:22 by mloureir          #+#    #+#             */
-/*   Updated: 2025/04/10 10:59:29 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/04/10 12:15:11 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ class ScavTrap : public ClapTrap
 		ScavTrap(const ScavTrap &o_trap);
 		ScavTrap & operator = (const ScavTrap &o_trap);
 		void guardGate();
+		void attack(const std::string &target);
 };
