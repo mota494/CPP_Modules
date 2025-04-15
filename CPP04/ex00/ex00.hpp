@@ -1,0 +1,5 @@
+#include "WrongCat.hpp"
+#include "WrongAnimal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
+#include "Animal.hpp" 

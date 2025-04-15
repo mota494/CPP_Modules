@@ -1,5 +1,5 @@
-NAME = ex00 
-SRC = ClapTrap.cpp main.cpp
+NAME = Polymorph 
+SRC = WrongAnimal.cpp WrongCat.cpp Animal.cpp Dog.cpp Cat.cpp main.cpp
 CPP_FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 all: $(NAME)
@@ -13,5 +13,3 @@ clean:
 fclean: clean
 
 re: fclean all
-
-
