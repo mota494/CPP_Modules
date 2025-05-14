@@ -12,21 +12,6 @@ int main()
 
 	delete i;
 	delete j;
-	
-	std::cout << "<--------------------------------->" << std::endl;
-
-	const WrongAnimal* w_meta = new WrongAnimal();
-	const WrongAnimal* w_i = new WrongCat(); 
-	
-	std::cout << w_meta->getType() << std::endl;
-	std::cout << w_i->getType() << std::endl;
-	w_meta->makeSound();
-	w_i->makeSound();
-
-	delete w_meta;
-	delete w_i;
-
-	return 0;
 }
 
 // if i try to create an object of class Animal it will give an error since we can't instatiate an abstract class
