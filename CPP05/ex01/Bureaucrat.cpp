@@ -1,15 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/24 14:14:57 by mloureir          #+#    #+#             */
+/*   Updated: 2025/09/24 14:42:47 by mloureir         ###   ########.pt       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : name(name)
 {
 	if (grade < 1)
-		throw GradeToHigh();
+		throw GradeTooHighException();
 	if (grade > 150)
-		throw GradeToLow();
+		throw GradeTooLowException();
 	this->grade = grade;
 }
 
 Bureaucrat::~Bureaucrat()
+{
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &o_bureau) : name(o_bureau.name), grade(o_bureau.grade)
 {
 }
 
@@ -31,26 +47,26 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &o_bureu)
 	return (*this);
 }
 
-const char *Bureaucrat::GradeToHigh::what(void) const throw()
+const char *Bureaucrat::GradeTooHighException::what(void) const throw()
 {
-	return ("Grade to high");
+	return ("Bureaucrat grade to high");
 }
 
-const char *Bureaucrat::GradeToLow::what(void) const throw()
+const char *Bureaucrat::GradeTooLowException::what(void) const throw()
 {
-	return ("Grade to low");
+	return ("Bureaucrat grade to low");
 }
 
 void	Bureaucrat::incGrade(void)
 {
 	if (this->grade - 1 <= 0)
-		throw GradeToHigh();
+		throw GradeTooHighException();
 	this->grade -= 1;
 }
 
 void	Bureaucrat::decGrade(void)
 {
 	if (this->grade + 1 > 150)
-		throw GradeToLow();
+		throw GradeTooLowException();
 	this->grade += 1;
 }

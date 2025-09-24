@@ -13,6 +13,10 @@ Bureaucrat::~Bureaucrat()
 {
 }
 
+Bureaucrat::Bureaucrat(const Bureaucrat &o_bureau) : name(o_bureau.name), grade(o_bureau.grade)
+{
+}
+
 std::string Bureaucrat::getName(void) const { return name; }
 int			Bureaucrat::getGrade(void) const { return grade; }
 

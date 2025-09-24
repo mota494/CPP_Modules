@@ -25,12 +25,13 @@ class Bureaucrat
 		
 		void	incGrade();
 		void	decGrade();
-		class GradeToHigh : public std::exception
+
+		class GradeTooHighException : public std::exception
 		{
 			const char *what() const throw();
 		};
 
-		class GradeToLow : public std::exception
+		class GradeTooLowException : public std::exception
 		{
 			const char *what() const throw();
 		};
