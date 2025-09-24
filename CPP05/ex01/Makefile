@@ -1,5 +1,5 @@
-NAME = megaphone
-SRC = MegaPhone.cpp
+NAME = Bureaucrat
+SRC = Bureaucrat.cpp main.cpp
 CPP_FLAG = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
