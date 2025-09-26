@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 14:14:57 by mloureir          #+#    #+#             */
-/*   Updated: 2025/09/24 14:42:47 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/09/26 15:28:17 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &o_bureu)
 	this->grade = o_bureu.grade;
 	return (*this);
 }
+
+void	Bureaucrat::signForm(Form *toSign)
+{
+	if (toSign->beSigned(this) == 0)
+		std::cout << GREEN << this->name << " signed " << toSign->getName() << RESET << std::endl;
+	else if (toSign->beSigned(this) == 2)
+		std::cout << RED << this->name << " couldn't sign " << toSign->getName() << " because it's already signed" << RESET << std::endl;
+	else
+		std::cout << RED << this->name << " couldn't sign " << toSign->getName() << " because they're grade is not high enough" << RESET << std::endl;
+}	
 
 const char *Bureaucrat::GradeTooHighException::what(void) const throw()
 {

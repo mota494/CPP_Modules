@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Form.hpp"
 #include <exception>
 #include <iostream>
 
@@ -8,6 +9,8 @@
 #define RED "\033[38;5;196m"
 #define PRETTY "\033[38;5;69m"
 #define RESET "\033[0m"
+
+class Form;
 
 class Bureaucrat
 {
@@ -25,6 +28,7 @@ class Bureaucrat
 		
 		void	incGrade();
 		void	decGrade();
+		void	signForm(Form *toSign);
 
 		class GradeTooHighException : public std::exception
 		{

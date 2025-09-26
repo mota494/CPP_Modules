@@ -1,7 +1,10 @@
 #pragma once
 
+#include "Bureaucrat.hpp"
 #include <exception>
 #include <iostream>
+
+class Bureaucrat;
 
 class Form
 {
@@ -15,6 +18,9 @@ class Form
 		~Form();
 		Form(const Form &o_form);
 		Form &operator = (const Form &o_form); 
+
+		int beSigned(Bureaucrat *signer); 
+		std::string	getName(void) const;
 
 		class GradeTooHighException : public std::exception
 		{
