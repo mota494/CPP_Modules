@@ -9,6 +9,8 @@
 #define PRETTY "\033[38;5;69m"
 #define RESET "\033[0m"
 
+class AForm;
+
 class Bureaucrat
 {
 	private:
@@ -22,9 +24,11 @@ class Bureaucrat
 		~Bureaucrat();
 		Bureaucrat(const Bureaucrat &o_bureau);
 		Bureaucrat& operator = (const Bureaucrat &o_bureau);
-		
+	
+		void	signForm(AForm *toSign);
 		void	incGrade();
 		void	decGrade();
+		void	executeForm(AForm &form);
 
 		class GradeTooHighException : public std::exception
 		{
