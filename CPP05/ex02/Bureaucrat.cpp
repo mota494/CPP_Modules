@@ -69,21 +69,21 @@ void	Bureaucrat::signForm(AForm *toSign)
 		std::cout << RED << this->name << " couldn't sign " << toSign->getName() << " because it's already signed" << RESET << std::endl;
 	else
 	{
-		std::cout << RED << this->name << " couldn't sign " << toSign->getName() << " because they're grade is not high enough" << RESET << std::endl;
+		std::cout << RED << this->name << " couldn't sign " << toSign->getName() << " because their grade is not high enough" << RESET << std::endl;
 		throw GradeTooLowException();
 	}
 }
 
-void	Bureaucrat::executeForm(AForm &form)
+void	Bureaucrat::executeForm(AForm *form)
 {
 	try
 	{
-		form.Execute(this);
-		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+		form->Execute(this);
+		std::cout << this->getName() << " executed " << form->getName() << std::endl;
 	}
 	catch(std::exception &e)
 	{
-		std::cout << this->getName() << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
+		std::cout << this->getName() << " couldn't execute " << form->getName() << " because " << e.what() << std::endl;
 	}
 }
 
