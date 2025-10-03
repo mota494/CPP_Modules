@@ -6,6 +6,7 @@
 #define GREEN "\033[38;5;83m"
 #define YELLOW "\033[38;5;220m"
 #define RED "\033[38;5;196m"
+#define TEST "\033[38;5;123m"
 #define PRETTY "\033[38;5;69m"
 #define RESET "\033[0m"
 

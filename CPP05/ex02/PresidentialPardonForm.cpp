@@ -24,5 +24,5 @@ PresidentialPardonForm & PresidentialPardonForm::operator=(const PresidentialPar
 
 void PresidentialPardonForm::Exeggutor() const
 {
-	std::cout << PRETTY << "Informs that " << this->target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+	std::cout << PRETTY << "Informs that " << this->target << " has been pardoned by Zaphod Beeblebrox" << RESET << std::endl;
 }
