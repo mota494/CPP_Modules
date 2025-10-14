@@ -19,7 +19,7 @@ bool CanNumberToChar(std::string &input)
 {
 	if (input[0] == '-')
 		return (false);
-	else if (std::atoi(input.c_str()) > 127 || std::atoi(input.c_str()) < 32)
+	else if (std::atol(input.c_str()) > 127 || std::atol(input.c_str()) < 32)
 		return (false);
 	return(true);
 }
@@ -30,8 +30,19 @@ void ScalarConverter::ConvertFromInt(std::string &input)
 		std::cout << "Char: " << static_cast<char>(std::atoi(input.c_str()));
 	else
 		std::cout << "Char: Not printable";
-	int num = std::atoi(input.c_str());
-	std::cout << "\nInt: " << num << "\nDouble: " << static_cast<double>(num) << "\nFloat: " << static_cast<float>(num) << "f" << std::endl;
+	long double number = std::strtold(input.c_str(), NULL);
+	if (number > std::numeric_limits<int>::max() || number < -std::numeric_limits<int>::max())
+		std::cout << "\nInt: Not an int";
+	else
+		std::cout << "\nInt: " << std::atoi(input.c_str());
+	if (number > std::numeric_limits<double>::max() || number < -std::numeric_limits<double>::max())
+		std::cout << "\nDouble: Not a double";
+	else
+		std::cout << "\nDouble: " << std::strtod(input.c_str(), NULL);
+	if (number > std::numeric_limits<float>::max() || number < -std::numeric_limits<float>::max())
+		std::cout << "\nFloat: Not a float";
+	else
+		std::cout << "\nFloat: " << std::strtof(input.c_str(), NULL) << "f";
 }
 
 bool IsASignal(char c)
@@ -55,11 +66,57 @@ bool ScalarConverter::IsItInt(std::string &input)
 	return (true);
 }
 
+bool ScalarConverter::IsItDouble(std::string &input)
+{
+	if (!std::isdigit(input[0]) && !IsASignal(input[0]))
+		return (false);
+	int	i = 1;
+	int dot = 0;
+	while (input[i])
+	{
+		if (input[i] == '.' && dot == 1)
+			return (false);
+		else if (input[i] == '.')
+			dot = 1;
+		else if (!std::isdigit(input[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+bool ScalarConverter::IsItFloat(std::string &input)
+{
+	if (!std::isdigit(input[0]) && !IsASignal(input[0]))
+		return (false);
+	int	i = 1;
+	int dot = 0, f = 0;
+	while (input[i])
+	{
+		if (input[i] == '.' && dot == 1)
+			return (false);
+		else if (input[i] == '.')
+			dot = 1;
+		else if (input[i] == 'f')
+			f++;
+		else if (!std::isdigit(input[i]))
+			return (false);
+		i++;
+	}
+	if (f > 1 || input[i - 1] != 'f')
+		return (false);
+	return (true);
+}
+
 void ScalarConverter::convert(std::string &input)
 {
 	if (IsItChar(input))
 		ConvertFromChar(input);
 	else if (IsItInt(input))
+		ConvertFromInt(input);
+	else if (IsItDouble(input))
+		ConvertFromInt(input);
+	else if (IsItFloat(input))
 		ConvertFromInt(input);
 	else
 		std::cout << RED << "Unknown type" << RESET << std::endl;

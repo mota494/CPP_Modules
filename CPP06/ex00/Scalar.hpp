@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <limits>
 
 #define GREEN "\033[38;5;83m"
 #define YELLOW "\033[38;5;220m"
@@ -23,6 +24,8 @@ class ScalarConverter
 		static void ConvertFromChar(std::string &input);
 		static bool	IsItInt(std::string &input);
 		static void ConvertFromInt(std::string &input);
+		static bool	IsItDouble(std::string &input);
+		static bool IsItFloat(std::string &input);
 	public:
 		static void convert(std::string &input);
 };
