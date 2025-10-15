@@ -40,9 +40,9 @@ void ScalarConverter::ConvertFromInt(std::string &input)
 	else
 		std::cout << "\nDouble: " << std::strtod(input.c_str(), NULL);
 	if (number > std::numeric_limits<float>::max() || number < -std::numeric_limits<float>::max())
-		std::cout << "\nFloat: Not a float";
+		std::cout << "\nFloat: Not a float" << std::endl;
 	else
-		std::cout << "\nFloat: " << std::strtof(input.c_str(), NULL) << "f";
+		std::cout << "\nFloat: " << std::strtof(input.c_str(), NULL) << "f" << std::endl;
 }
 
 bool IsASignal(char c)
@@ -108,8 +108,46 @@ bool ScalarConverter::IsItFloat(std::string &input)
 	return (true);
 }
 
+bool ScalarConverter::IsItInfNan(std::string &input, int *type)
+{
+	if (input == "-inff" || input == "+inff")
+	{
+		*type = 1;
+		return (true);
+	}
+	if (input == "-inf" || input == "+inf")
+	{
+		*type = 0;
+		return (true);
+	}
+	if (input == "nan")
+	{
+		*type = 0;
+		return (true);
+	}
+	if (input == "nanf")
+	{
+		*type = 1;
+		return (true);
+	}
+	return (false);
+}
+
+void ScalarConverter::WriteNanInf(std::string &input, int type)
+{
+	if (type == 0)
+		std::cout << "Char: Not Char\nInt: Not an int\nDouble: " << input << "\nFloat: " << input << "f" << std::endl;
+	else if (type == 1)
+	{
+		input.erase(input.size() - 1);
+		std::cout << "Char: Not Char\nInt: Not an int\nDouble: " << input << "\nFloat: " << input << "f" << std::endl;
+	}
+}
+
 void ScalarConverter::convert(std::string &input)
 {
+	int	type = 0;
+
 	if (IsItChar(input))
 		ConvertFromChar(input);
 	else if (IsItInt(input))
@@ -118,6 +156,8 @@ void ScalarConverter::convert(std::string &input)
 		ConvertFromInt(input);
 	else if (IsItFloat(input))
 		ConvertFromInt(input);
+	else if (IsItInfNan(input, &type))
+		WriteNanInf(input, type);
 	else
 		std::cout << RED << "Unknown type" << RESET << std::endl;
 }

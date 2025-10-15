@@ -26,6 +26,8 @@ class ScalarConverter
 		static void ConvertFromInt(std::string &input);
 		static bool	IsItDouble(std::string &input);
 		static bool IsItFloat(std::string &input);
+		static bool IsItInfNan(std::string &input, int *type);
+		static void WriteNanInf(std::string &input, int type);
 	public:
 		static void convert(std::string &input);
 };
