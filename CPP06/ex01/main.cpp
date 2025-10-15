@@ -15,4 +15,5 @@ int main()
 	else
 		std::cout << "Serialization not bad not bad" << std::endl;
 	std::cout << "Age: " << cp->age << "\nName: " << cp->name << "\nCan vote: " << cp->vote << std::endl;
+	return 0;
 }
