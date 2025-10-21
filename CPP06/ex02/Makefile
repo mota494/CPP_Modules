@@ -1,5 +1,5 @@
 NAME = Base
-SRC = Base.cpp A.cpp B.cpp C.cpp main.cpp
+SRC = Base.cpp main.cpp
 CPP_FLAG = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
