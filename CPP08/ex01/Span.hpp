@@ -6,6 +6,12 @@
 #include <iostream>
 #include <vector>
 
+#define GREEN "\033[38;5;83m"
+#define YELLOW "\033[38;5;220m"
+#define RED "\033[38;5;196m"
+#define PRETTY "\033[38;5;69m"
+#define RESET "\033[0m"
+
 class Span
 {
 	private:
@@ -20,6 +26,7 @@ class Span
 		
 		void	addNumber(int N);
 		int		longestSpan();
+		int		shortestSpan();
 
 		class NoSpace : public std::exception
 		{

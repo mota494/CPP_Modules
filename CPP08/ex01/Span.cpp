@@ -46,6 +46,26 @@ int Span::longestSpan()
 	return (abs(*it_max - *it_min));
 }
 
+int Span::shortestSpan()
+{
+	if (this->numStored <= 1 || this->maxStored <= 1)
+		throw NoNumbers();
+
+	std::vector<int> temp(this->List);
+	std::sort(temp.begin(), temp.end());
+	std::vector<int>::iterator iter = temp.begin();
+	int store_small = abs(*iter - *(iter + 1));
+	unsigned int i = 0;
+
+	while (i + 1 != this->numStored)
+	{
+		if (abs(*iter - *(iter + 1)) < store_small)
+			store_small = abs(*iter - *(iter + 1));
+		i++;
+	}
+	return (store_small);
+}
+
 void Span::addNumber(int N)
 {
 	if (this->numStored + 1 > this->maxStored)
