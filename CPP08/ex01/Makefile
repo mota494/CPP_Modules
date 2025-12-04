@@ -1,6 +1,6 @@
 NAME = span
 SRC = Span.cpp main.cpp
-CPP_FLAG = -Wall -Wextra -Werror -std=c++98
+CPP_FLAG = -g -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 

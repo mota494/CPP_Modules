@@ -1,6 +1,9 @@
 #include "Span.hpp"
 
-Span::Span(unsigned int N) : maxStored(N) {}
+Span::Span(unsigned int N) : maxStored(N) 
+{
+	this->numStored = 0;
+}
 
 Span::~Span(){}
 
