@@ -7,6 +7,7 @@
 #include <map>
 #include <sstream>
 #include <string>
+#include <algorithm>
 
 #define GREEN "\033[38;5;83m"
 #define YELLOW "\033[38;5;220m"
@@ -17,8 +18,13 @@
 class BitcoinExchange
 {
 	private:
-		std::map<std::string, double, int> CoinEx;
-		int startDb(void);
+		std::map<std::string, double> CoinEx;
+		int			startDb(void);
+		int			checkDate(std::string input);
+		double		strd(std::string input); 
+		std::string	dateToInt(std::string input);
+		bool		isLeapYear(int year);
+		int			checkDayMonth(int month, int day, int year);
 	public:
 		BitcoinExchange(void);
 		BitcoinExchange(const BitcoinExchange &o_BitEx);
