@@ -83,17 +83,17 @@ int	BitcoinExchange::checkDate(std::string input)
 
 	if (input.size() != 10)
 	{
-		std::cout << input << " <--- Date must be as follows yy-mm-dd" << std::endl;
+		std::cout << input << RED << " <--- Date must be as follows yy-mm-dd" << RESET << std::endl;
 		return (1);
 	}
 	if (year < 2000)
 	{
-		std::cout << input << " <--- This program will not interpret years bellow 2000" << std::endl;
+		std::cout << input << RED << " <--- This program will not interpret years bellow 2000" << RESET << std::endl;
 		return (1);
 	}
 	if (checkDayMonth(month, day, year) != 0)
 	{
-		std::cout << input << " <--- This day is invalid" << std::endl;
+		std::cout << input << RED << " <--- This day is invalid" << RESET << std::endl;
 		return (1);
 	}
 	return (0);
@@ -119,7 +119,6 @@ int BitcoinExchange::startDb(void)
 		if (com == std::string::npos)
 			return (1);
 		double btcValue = strd(text.substr(com+1));
-		//std::cout << btcValue << std::endl;
 		if (btcValue < 0)
 			return (1);
 		if (checkDate(text.substr(0, com)) != 0)
@@ -136,7 +135,6 @@ double BitcoinExchange::conversion(std::string date, double value)
 	double o_cr;
 	int		i = 0;
 	
-	//std::cout << it->first << "{}" << it->second << "{}" << date << "{}" << value << std::endl;
 	while(it != CoinEx.end())
 	{
 		if (stri(it->first) - stri(intDate) <= 0)
@@ -174,19 +172,23 @@ int BitcoinExchange::readInput(std::string input)
 	{
 		size_t com = text.find('|');
 		if (com == std::string::npos)
-			std::cout << text << " <--- Bad input" << std::endl;
+			std::cout << text << RED << " <--- Bad input" << RESET << std::endl;
 		else
 		{
 			if (checkDate(text.substr(0, com - 1)) == 0)
 			{
-				double conValue = strd(text.substr(com + 1));
-				if (conValue < 0)
-					std::cout << conValue << " <--- Not a positive number" << std::endl;
-				else if (conValue > 1000)
-					std::cout << conValue << " <--- Too large a number" << std::endl;
+				if (text.substr(com + 1).size() <= 0)
+					std::cout << text << RED << " <--- Bad input" << RESET << std::endl;
 				else
-					//conversion(text.substr(0, com - 1), conValue);
-					std::cout << text.substr(0, com - 1) << ": " << conValue << " --> " << conversion(text.substr(0, com - 1), conValue) << std::endl;
+				{
+					double conValue = strd(text.substr(com + 1));
+					if (conValue < 0)
+						std::cout << text << RED << " <--- Not a positive number" << RESET << std::endl;
+					else if (conValue > 1000)
+						std::cout << text << RED << " <--- Too large a number" << RESET << std::endl;
+					else
+						std::cout << text.substr(0, com - 1) << ": " << GREEN << conValue << RESET << " --> " << PRETTY << conversion(text.substr(0, com - 1), conValue) << RESET << std::endl;
+				}
 			}
 		}
 	}
