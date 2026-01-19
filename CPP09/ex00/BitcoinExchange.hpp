@@ -21,7 +21,8 @@ class BitcoinExchange
 		std::map<std::string, double> CoinEx;
 		int			startDb(void);
 		int			checkDate(std::string input);
-		double		strd(std::string input); 
+		double		strd(std::string input);
+		int			stri(std::string input);
 		std::string	dateToInt(std::string input);
 		bool		isLeapYear(int year);
 		int			checkDayMonth(int month, int day, int year);

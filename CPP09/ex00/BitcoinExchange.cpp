@@ -21,6 +21,15 @@ double BitcoinExchange::strd(std::string input)
 	return (toret);
 }
 
+int BitcoinExchange::stri(std::string input)
+{
+	std::stringstream ss(input);
+	int toret;
+
+	ss >> toret;
+	return (toret);
+}
+
 std::string BitcoinExchange::dateToInt(std::string input)
 {
 	input.erase(std::remove(input.begin(), input.end(), '-'), input.end());
@@ -109,7 +118,8 @@ int BitcoinExchange::startDb(void)
 		size_t com = text.find(',');
 		if (com == std::string::npos)
 			return (1);
-		double btcValue = strd(text.substr(com));
+		double btcValue = strd(text.substr(com+1));
+		//std::cout << btcValue << std::endl;
 		if (btcValue < 0)
 			return (1);
 		if (checkDate(text.substr(0, com)) != 0)
@@ -122,13 +132,25 @@ int BitcoinExchange::startDb(void)
 double BitcoinExchange::conversion(std::string date, double value)
 {
 	std::string intDate = dateToInt(date);
-	double toret;
 	std::map<std::string, double>::iterator it = CoinEx.begin();
-
+	double o_cr;
+	int		i = 0;
+	
+	//std::cout << it->first << "{}" << it->second << "{}" << date << "{}" << value << std::endl;
 	while(it != CoinEx.end())
 	{
-
-		it++;
+		if (stri(it->first) - stri(intDate) <= 0)
+		{
+			i++;
+			o_cr = it->second;
+		}
+		if (strd(it->first) - strd(intDate) > 0)
+		{
+			if (i == 0)
+				o_cr = it->second;
+			return (o_cr * value);
+		}
+			it++;
 	}
 	return (-1);
 }
@@ -163,7 +185,8 @@ int BitcoinExchange::readInput(std::string input)
 				else if (conValue > 1000)
 					std::cout << conValue << " <--- Too large a number" << std::endl;
 				else
-					std::cout << text.substr(0, com - 1) << ": " << conValue << " --> " << conversion(text.substr(0, com - 1), conValue);
+					//conversion(text.substr(0, com - 1), conValue);
+					std::cout << text.substr(0, com - 1) << ": " << conValue << " --> " << conversion(text.substr(0, com - 1), conValue) << std::endl;
 			}
 		}
 	}
