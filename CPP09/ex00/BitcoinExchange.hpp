@@ -25,6 +25,8 @@ class BitcoinExchange
 		std::string	dateToInt(std::string input);
 		bool		isLeapYear(int year);
 		int			checkDayMonth(int month, int day, int year);
+		int			readInput(std::string input);
+		double		conversion(std::string date, double value);
 	public:
 		BitcoinExchange(void);
 		BitcoinExchange(const BitcoinExchange &o_BitEx);
