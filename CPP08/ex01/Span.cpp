@@ -63,7 +63,8 @@ int Span::shortestSpan()
 	while (i + 1 != this->numStored)
 	{
 		if (abs(*iter - *(iter + 1)) < store_small)
-			store_small = abs(*iter - *(iter + 1));
+			store_small = abs((*iter) - *(iter + 1));
+		*iter++;
 		i++;
 	}
 	return (store_small);
