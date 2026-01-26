@@ -3,6 +3,9 @@
 #include <iostream>
 #include <stack>
 #include <cstdlib>
+#include <algorithm>
+#include <cctype>
+#include <string>
 
 #define GREEN "\033[38;5;83m"
 #define YELLOW "\033[38;5;220m"
@@ -23,6 +26,7 @@ class RPN
 		static int	vatNum(std::string value);
 		static int	isOp(const char& val);
 		static int  isNum(const char& val);
+		static int	doCalc(int num1, int num2, char op);
 	public:
 		static void rpn(const std::string values);
 };

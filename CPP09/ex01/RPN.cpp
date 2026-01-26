@@ -17,45 +17,64 @@ RPN &RPN::operator=(const RPN &o_RPN)
 
 int RPN::isOp(const char &val)
 {
-	if(val == '*' || val == '-' || val == '/' || val == '+')
+	if(val == 42 || val == 45 || val == 47 || val == 43)
 		return (0);
 	return (1);
 }
 
 int RPN::isNum(const char &val)
 {
-	if(val >= '0' && val <= '9')
+	if(val >= 48 && val <= 57)
 		return (0);
 	return (1);
 }
 
-int RPN::actualMath(std::string value)
+int RPN::doCalc(int num1, int num2, char op)
 {
-	//conversion
-	std::stack<int> operands;
-	std::stack<char> operators;
+	int toret;
 
+	if (op == '+')
+		toret  = num1 + num2;
+	else if (op == '-')
+		toret = num1 - num2;
+	else if (op == '/')
+		toret = num1 / num2;
+	else
+		toret = num1 * num2;
+	return (toret);
+}
+
+int	RPN::actualMath(std::string value)
+{
+	std::stack<char> nums;
+	std::stack<char> ops;
+	int	result = 0;
+
+	value.erase(std::remove_if(value.begin(), value.end(), ::isspace), value.end());
+	
 	size_t i = 0, len = value.length();
-
 	while (i < len)
 	{
-		/*while (value.at(i) == ' ')
-			i++;*/
-		if (isNum(value.at(i)) == 0)
-			operands.push(value.at(i) - '0');
-		else if (isOp(value.at(i)) == 0)
-			operators.push(value.at(i));
+		if (isOp(value.at(i)) == 0)
+			ops.push(value.at(i));
+		else if (isNum(value.at(i)) == 0)
+			nums.push(value.at(i));
 		i++;
 	}
-
-	while(!operators.empty())
+	
+	while (!ops.empty())
 	{
-		int d = operators.top();
-		std::cout << d << std::endl;
-		operators.pop();
+		std::cout << "[" << ops.top() << "]";
+		ops.pop();
 	}
-	//calcs
-	int result = 0;
+	std::cout << std::endl;
+	while (!nums.empty())
+	{
+		std::cout << "[" << nums.top() << "]";
+		nums.pop();
+	}
+	std::cout << std::endl;
+	// THIS WON'T WORK STUPID ASS BOY
 	return (result);
 }
 
@@ -91,7 +110,7 @@ int RPN::checkValues(std::string value)
 	size_t	i = 0;
 	int		num = 0;
 	int		ops = 0;
-	int		last;
+	int		last = 0;
 
 	size_t	len = value.length();
 	if (checkFirstVals(value) != 0)
