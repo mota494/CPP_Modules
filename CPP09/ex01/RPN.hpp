@@ -22,11 +22,13 @@ class RPN
 		RPN &operator=(const RPN &o_RPN);
 		static int	checkValues(std::string value);
 		static int	checkFirstVals(std::string value);
-		static int	actualMath(std::string value);
+		static double	actualMath(std::string value);
 		static int	vatNum(std::string value);
 		static int	isOp(const char& val);
 		static int  isNum(const char& val);
-		static int	doCalc(int num1, int num2, char op);
+		static double	doCalc(double num1, double num2, char op);
 	public:
 		static void rpn(const std::string values);
 };
+
+void	print_stack(const std::stack<char> s);

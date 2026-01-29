@@ -134,7 +134,6 @@ double BitcoinExchange::conversion(std::string date, double value)
 	std::map<std::string, double>::iterator it = CoinEx.begin();
 	double o_cr;
 	int		i = 0;
-	bool	convert = false;
 
 	while(it != CoinEx.end())
 	{
@@ -145,7 +144,6 @@ double BitcoinExchange::conversion(std::string date, double value)
 		}
 		if (stri(it->first) - stri(intDate) >= 0)
 		{
-			convert = true;
 			if (i == 0 || stri(it->first) - stri(intDate) == 0)
 				o_cr = it->second;
 			return (o_cr * value);

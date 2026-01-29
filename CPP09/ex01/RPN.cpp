@@ -29,9 +29,9 @@ int RPN::isNum(const char &val)
 	return (1);
 }
 
-int RPN::doCalc(int num1, int num2, char op)
+double RPN::doCalc(double num1, double num2, char op)
 {
-	int toret;
+	double toret;
 
 	if (op == '+')
 		toret  = num1 + num2;
@@ -41,42 +41,52 @@ int RPN::doCalc(int num1, int num2, char op)
 		toret = num1 / num2;
 	else
 		toret = num1 * num2;
+	std::cout << GREEN << num1 << " " << op << " " << num2 << " = " << toret << RESET << std::endl;
 	return (toret);
 }
 
-int	RPN::actualMath(std::string value)
+void print_stack(const std::stack<double> *s)
 {
-	std::stack<char> nums;
-	std::stack<char> ops;
-	int	result = 0;
+	std::stack<double> temp = *s;
+
+	while (!temp.empty())
+	{
+		std::cout << "[" << temp.top() << "]";
+		temp.pop();
+	}
+	std::cout << std::endl;
+}
+
+double	RPN::actualMath(std::string value)
+{
+	std::stack<double> nums;
+	double num1, num2;
+	size_t i = 0;
 
 	value.erase(std::remove_if(value.begin(), value.end(), ::isspace), value.end());
 	
-	size_t i = 0, len = value.length();
-	while (i < len)
+	while (i < value.length())
 	{
-		if (isOp(value.at(i)) == 0)
-			ops.push(value.at(i));
-		else if (isNum(value.at(i)) == 0)
-			nums.push(value.at(i));
+		if (isNum(value.at(i)) == 0)
+			nums.push(value.at(i) - '0');
+		else if (isOp(value.at(i)) == 0)
+		{
+			num2 = nums.top();
+			nums.pop();
+			num1 = nums.top();
+			nums.pop();
+			if (num2 == 0 && value.at(i) == '/')
+			{
+				std::cout << RED << "Can't divide by 0" << RESET << std::endl;
+				exit (1);
+			}
+			nums.push(doCalc(num1, num2, value.at(i)));
+		}
 		i++;
 	}
-	
-	while (!ops.empty())
-	{
-		std::cout << "[" << ops.top() << "]";
-		ops.pop();
-	}
-	std::cout << std::endl;
-	while (!nums.empty())
-	{
-		std::cout << "[" << nums.top() << "]";
-		nums.pop();
-	}
-	std::cout << std::endl;
-	// THIS WON'T WORK STUPID ASS BOY
-	return (result);
+	return (nums.top());
 }
+
 
 int RPN::checkFirstVals(std::string value)
 {
@@ -143,5 +153,8 @@ void RPN::rpn(const std::string value)
 	if (checkValues(value) != 0)
 		std::cout << RED << "Error with input" << RESET << std::endl;
 	else
-		actualMath(value);
+	{
+		double result = actualMath(value);
+		std::cout << "Final result: " << result << std::endl;
+	}
 }
