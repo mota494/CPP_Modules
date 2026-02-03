@@ -1,5 +1,5 @@
-NAME = RPN
-SRC = RPN.cpp main.cpp
+NAME = PmergeMe
+SRC = PmergeMe.cpp main.cpp
 CPP_FLAG = -g -Wall -Wextra -Werror -std=c++98
 OBJS = $(SRC:.cpp=.o)
 
